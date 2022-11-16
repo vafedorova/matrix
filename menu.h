@@ -12,4 +12,5 @@ void multiply_two_matrices();
 void transpose_matrix(); 
 void nth_power_matrix(); 
 int show_menu(); 
+void calculate_det();
 #endif

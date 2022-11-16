@@ -17,6 +17,7 @@ public:
   Matrix<T> operator*(const Matrix<T> &second) const;
   Matrix<T> transpose() const;
   Matrix<T> nth_power(int power) const;
+  T det() const;
   const std::vector<T> &operator[](int idx) const {
     return data[idx];
   }
@@ -140,5 +141,16 @@ Matrix<T> Matrix<T>::nth_power(int power) const {
   for (int k = 2; k <= power; k++) 
     result = result * (*this);
   return result;
+}
+
+
+//8
+template<typename T>
+T Matrix<T>::det() const {
+  if (m != n) {
+    throw std::logic_error("Determinant exists only for square matrix!!!");
+  }
+
+  return 0;
 }
 #endif

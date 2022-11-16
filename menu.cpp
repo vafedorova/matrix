@@ -216,6 +216,25 @@ void nth_power_matrix() {
 }
 
 
+// 8
+void calculate_det() {
+  try {
+    string m1_name;
+    cout << "Choose matrix: ";
+    Matrix<int> *m1 = 0;
+    while (!(m1 = choose_matrix_from_map(m1_name))) {
+      ;
+    }
+    cout << *m1;
+    int det = m1->det();
+    cout << "|" << m1_name << "|" << " = " << det << "\n";
+  }
+  catch (const std::exception &ex) {
+    cerr << ex.what() << "\n";
+  }
+}
+
+
 int show_menu() {
   while (true) {
     cout << "==========================================================\n";
@@ -226,11 +245,12 @@ int show_menu() {
          << "5. Multiply two matrices.\n"
          << "6. Transpose a matrix.\n"
          << "7. Calculate an integer exponent of a matrix.\n"
-         << "8. Exit the program.\n";
+         << "8. Calculate the determinant of a matrix.\n"
+         << "9. Exit the program.\n";
     cout << "Enter your choice: ";
     int choice;
     cin >> choice;
-    if (choice > 8 || choice < 1) {
+    if (choice > 9 || choice < 1) {
       cerr << "Invalid choice. Try again." << endl;
       continue;
     }

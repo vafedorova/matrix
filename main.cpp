@@ -26,6 +26,9 @@ int main() {
       nth_power_matrix();
       break;
     case 8:
+      calculate_det();
+      break;
+    case 9:
       return 0;
     }
   }
