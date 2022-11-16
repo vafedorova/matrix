@@ -4,7 +4,7 @@
 #include "matrix.h"
 
 void enter_matrix();
-Matrix *choose_matrix_from_map(std::string &matrix_name);
+Matrix<int> *choose_matrix_from_map(std::string &matrix_name);
 void show_matrix(); 
 void add_matrices();
 void muptiply_by_number(); 

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-std::unordered_map<std::string, Matrix> memory_map;
+std::unordered_map<std::string, Matrix<int>> memory_map;
 
 // 1
 void enter_matrix() {
@@ -25,12 +25,12 @@ void enter_matrix() {
     for (int j = 0; j < n; ++j)
       cin >> data[k++];
   }
-  memory_map[matrix_name] = Matrix(m, n, data);
+  memory_map[matrix_name] = Matrix<int>(m, n, data);
 }
 
 
 // 1, 2
-Matrix *choose_matrix_from_map(string &matrix_name) {
+Matrix<int> *choose_matrix_from_map(string &matrix_name) {
   if (memory_map.empty()) {
     cerr << "---\nNo matrices entered yet! Please, enter the matrix first!\n";
     cout << "Do you want to enter new matrix now? (1 = yes / 0 = no)\n";
@@ -59,7 +59,7 @@ Matrix *choose_matrix_from_map(string &matrix_name) {
 void show_matrix() {
   cout << "Choose matrix to show: ";
   string m_name;
-  Matrix *m = choose_matrix_from_map(m_name);
+  Matrix<int> *m = choose_matrix_from_map(m_name);
   if (m)
     cout << *m;
 }
@@ -70,19 +70,19 @@ void add_matrices() {
   cout << "Choose matrices to add:\n";
   string m1_name, m2_name;
   cout << "First matrix: ";
-  Matrix *m1 = 0;
+  Matrix<int> *m1 = 0;
   while (!(m1 = choose_matrix_from_map(m1_name))) {
     ;
   }
   cout << *m1;
   cout << "Second matrix: ";
-  Matrix *m2 = 0;
+  Matrix<int> *m2 = 0;
   while (!(m2 = choose_matrix_from_map(m2_name))) {
     ;
   }
   cout << *m2;
   try {
-    Matrix result_matrix = *m1 + *m2;
+    Matrix<int> result_matrix = *m1 + *m2;
     cout << "Sum: " << m1_name << " + " << m2_name << " =\n" << result_matrix;
     cout << "Do you want to save " << m1_name << " + " << m2_name
          << "? (1 = yes / 0 = no)\n";
@@ -108,12 +108,12 @@ void muptiply_by_number() {
   cin >> a;
   string m1_name;
   cout << "Choose matrix: ";
-  Matrix *m1 = 0;
+  Matrix<int> *m1 = 0;
   while (!(m1 = choose_matrix_from_map(m1_name))) {
     ;
   }
   cout << *m1;
-  Matrix result_matrix = *m1 * a;
+  Matrix<int> result_matrix = *m1 * a;
   cout << "Result: " << m1_name << " * " << a << " =\n" << result_matrix;
   cout << "Do you want to save " << m1_name << " * " << a
        << "? (1 = yes / 0 = no)\n";
@@ -133,19 +133,19 @@ void multiply_two_matrices() {
   cout << "Choose matrices to multiply:\n";
   string m1_name, m2_name;
   cout << "First matrix: ";
-  Matrix *m1 = 0;
+  Matrix<int> *m1 = 0;
   while (!(m1 = choose_matrix_from_map(m1_name))) {
     ;
   }
   cout << *m1;
   cout << "Second matrix: ";
-  Matrix *m2 = 0;
+  Matrix<int> *m2 = 0;
   while (!(m2 = choose_matrix_from_map(m2_name))) {
     ;
   }
   cout << *m2;
   try {
-    Matrix result_matrix = *m1 * *m2;
+    Matrix<int> result_matrix = *m1 * *m2;
     cout << "Multiply: " << m1_name << " * " << m2_name << " =\n" << result_matrix;
     cout << "Do you want to save " << m1_name << " * " << m2_name
          << "? (1 = yes / 0 = no)\n";
@@ -169,12 +169,12 @@ void transpose_matrix() {
   cout << "Choose matrix to transpose:\n";
   string m1_name;
   cout << "Matrix: ";
-  Matrix *m1 = 0;
+  Matrix<int> *m1 = 0;
   while (!(m1 = choose_matrix_from_map(m1_name))) {
     ;
   }
   cout << *m1;
-  Matrix result_matrix = m1->transpose(); 
+  Matrix<int> result_matrix = m1->transpose(); 
   cout << "(" << m1_name << ")^T =\n" << result_matrix;
   cout << "Do you want to save (" << m1_name
        << ")^T? (1 = yes / 0 = no)\n";
@@ -196,12 +196,12 @@ void nth_power_matrix() {
   cin >> power;
   string m1_name;
   cout << "Choose matrix: ";
-  Matrix *m1 = 0;
+  Matrix<int> *m1 = 0;
   while (!(m1 = choose_matrix_from_map(m1_name))) {
     ;
   }
   cout << *m1;
-  Matrix result_matrix = m1->nth_power(power);
+  Matrix<int> result_matrix = m1->nth_power(power);
   cout << "(" << m1_name << ")^" << power << " =\n" << result_matrix;
   cout << "Do you want to save (" << m1_name << ")^" << power
        << "? (1 = yes / 0 = no)\n";
