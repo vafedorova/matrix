@@ -12,16 +12,14 @@ ostream &operator<<(ostream &os, const Matrix &matrix) {
   return os;
 }
 
-/*
+
 istream &operator>>(istream &is, const Matrix &matrix) {
   for (int i = 0; i < matrix.m; i++) {
     for (int j = 0; j < matrix.n; j++)
-      is >> matrix.data[i][j] << " ";
-    is >> "\n";
+      is >> matrix.data[i][j];
   }
   return is;
 }
-*/
 
 Matrix::Matrix(int m, int n, const std::vector<int> &data_as_one_vector) : m(m), n(n), data(m, std::vector<int>(n)) {
   int k = 0;

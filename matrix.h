@@ -22,9 +22,9 @@ public:
 private:
   int m;
   int n;
-  std::vector<std::vector<int>> data;
+  std::vector<std::vector<int> > data;
 
   friend std::ostream &operator<<(std::ostream &, const Matrix &);
-  //friend std::istream &operator>>(std::istream &, const Matrix &);
+  friend std::istream &operator>>(std::istream &, const Matrix &);
 };
 #endif
