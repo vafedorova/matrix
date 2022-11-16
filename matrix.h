@@ -27,6 +27,17 @@ private:
   int n;
   std::vector<std::vector<T>> data;
 
+  Matrix<T> submatrix(int i) const {
+    std::vector<T> new_data;
+    for (int j = 1; j < m; j++) {
+      for (int k = 0; k < n; k++) {
+        if (k != i) {
+          new_data.push_back(data[j][k]);
+        }
+      }
+    }
+    return Matrix(m - 1, n - 1, new_data);
+  }
   template<typename TT> friend std::ostream &operator<<(std::ostream &, const Matrix<TT> &);
   template<typename TT> friend std::istream &operator>>(std::istream &, Matrix<TT> &);
 };
@@ -150,7 +161,18 @@ T Matrix<T>::det() const {
   if (m != n) {
     throw std::logic_error("Determinant exists only for square matrix!!!");
   }
-
-  return 0;
+  if (n == 1) {
+    return (*this)[0][0];
+  }
+  if (n == 2) {
+    return (*this)[0][0] * (*this)[1][1] - (*this)[0][1] * (*this)[1][0];
+  }
+  T result = 0;
+  int sgn = 1;
+  for (int i = 0; i < n; i++) {
+    result += (*this)[0][i] * submatrix(i).det() * sgn;
+    sgn *= -1;
+  }
+  return result;
 }
 #endif
