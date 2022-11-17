@@ -201,7 +201,7 @@ void nth_power_matrix() {
     ;
   }
   cout << *m1;
-  Matrix<int> result_matrix = m1->nth_power(power);
+  Matrix<int> result_matrix = nth_power(*m1, power);
   cout << "(" << m1_name << ")^" << power << " =\n" << result_matrix;
   cout << "Do you want to save (" << m1_name << ")^" << power
        << "? (1 = yes / 0 = no)\n";

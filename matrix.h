@@ -16,7 +16,6 @@ public:
   Matrix<T> operator*(int a) const;
   Matrix<T> operator*(const Matrix<T> &second) const;
   Matrix<T> transpose() const;
-  Matrix<T> nth_power(int power) const;
   T det() const;
   const std::vector<T> &operator[](int idx) const {
     return data[idx];
@@ -147,11 +146,13 @@ Matrix<T> Matrix<T>::transpose() const {
 
 // 7
 template<typename T>
-Matrix<T> Matrix<T>::nth_power(int power) const {
-  Matrix<T> result = *this;
-  for (int k = 2; k <= power; k++) 
-    result = result * (*this);
-  return result;
+Matrix<T> nth_power(Matrix<T> a, int power) {
+  if (power == 1)
+    return a;
+  if (power % 2)
+    return a * nth_power(a, power - 1);
+  Matrix<T> b = nth_power(a, power / 2);
+  return b * b;
 }
 
 
